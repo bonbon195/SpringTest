@@ -16,12 +16,12 @@ public class PhoneController {
     @Autowired
     private PhoneRepository repository;
 
-    @RequestMapping(value = "/getphone", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     public Phone getPhone(@RequestParam("id") int id){
         return repository.getPhone(id);
     }
 
-    @RequestMapping(value = "/getphones", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-all", method = RequestMethod.GET)
     public List<Phone> getPhones(){
         return repository.getAllPhones();
     }
@@ -31,7 +31,7 @@ public class PhoneController {
         return repository.deletePhone(id);
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.PUT,
+    @RequestMapping(value = "/new", method = RequestMethod.PUT,
             consumes = "text/plain")
     public int createPhone(@RequestBody String param){
         Phone phone = new Phone();

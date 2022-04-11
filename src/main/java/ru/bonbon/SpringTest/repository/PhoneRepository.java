@@ -18,25 +18,23 @@ public class PhoneRepository {
     JdbcTemplate jdbcTemplate;
 
     public int createPhone(Phone phone){
-        return jdbcTemplate.update("insert into ? (?) values (?)", TABLE_PHONE, PHONE_VALUE, phone.getValue());
+        return jdbcTemplate.update("insert into \"Phone\" (\"value\") values (?)", phone.getValue());
     }
 
     public int deletePhone(int id){
-        return jdbcTemplate.update("delete from ? where ?=?", TABLE_PHONE, PHONE_ID,
-                id);
+        return jdbcTemplate.update("delete from \"Phone\" where \"id\"=?", id);
     }
 
     public Phone getPhone(int id){
-        return jdbcTemplate.queryForObject("select * from ? where ?=?", new PhoneMapper(), TABLE_PHONE, PHONE_ID,
-                id);
+        return jdbcTemplate.queryForObject("select * from \"Phone\" where \"id\"=?", new PhoneMapper(), id);
     }
 
     public List<Phone> getAllPhones(){
-        return jdbcTemplate.query("select * from ?", new PhoneMapper(), TABLE_PHONE);
+        return jdbcTemplate.query("select * from \"Phone\"", new PhoneMapper());
     }
 
     public int updatePhone(Phone phone){
-        return jdbcTemplate.update("update ? set ? = ? where ? = ?", TABLE_PHONE, PHONE_VALUE,
-                phone.getValue(), PHONE_ID, phone.getId());
+        return jdbcTemplate.update("update \"Phone\" set \"value\" = ? where \"id\" = ?",
+                phone.getValue(), phone.getId());
     }
 }

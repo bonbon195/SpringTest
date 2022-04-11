@@ -15,19 +15,22 @@ public class PersonController {
     @Autowired
     PersonRepository repository;
 
-    @RequestMapping(value = "/getperson", method = RequestMethod.GET)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     public Person getPerson(@RequestParam("id") int id){
         return repository.getPerson(id);
     }
-    @RequestMapping(value = "/getallpersons", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/get-all", method = RequestMethod.GET)
     public List<Person> getAllPersons(){
         return repository.getAllPersons();
     }
-    @RequestMapping(value = "/getallpersons", method = RequestMethod.DELETE)
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public int deletePerson(@RequestParam("id") int id){
         return repository.deletePerson(id);
     }
-    @RequestMapping(value = "/create", method = RequestMethod.PUT, consumes = "text/plain")
+
+    @RequestMapping(value = "/new", method = RequestMethod.PUT, consumes = "text/plain")
     public int createPerson(@RequestBody String param){
         Person person = new Person();
         try {
@@ -40,6 +43,7 @@ public class PersonController {
         }
         return repository.createPerson(person);
     }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "text/plain")
     public int updatePerson(@RequestBody String param){
         Person person = new Person();

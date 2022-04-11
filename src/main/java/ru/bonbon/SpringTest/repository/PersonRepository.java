@@ -17,7 +17,7 @@ public class PersonRepository {
     JdbcTemplate jdbcTemplate;
 
     public int createPerson(Person person){
-        return jdbcTemplate.update("insert into ? (?) values (?)", TABLE_PERSON, PERSON_ID, person.getName());
+        return jdbcTemplate.update("insert into \"Person\" (\"id\") values (?)", person.getName());
     }
 
     public int deletePerson(int id){
